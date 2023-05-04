@@ -1,0 +1,39 @@
+#header-moto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 80px;
+    box-shadow: 1px 1px 1px black;
+}
+
+.carta {
+    border-radius: 10px;
+    border: 1px solid transparent;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1rem;
+    height: 300px;
+}
+
+.carta:hover {
+    background-color: #6b63ff4b;
+    cursor: pointer;
+    border: 1px solid #6b63ffa0;
+}
+#img-pre-orden {
+    width: 220px;
+}
+.cont-cartas {
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: 30px;
+}

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Administrador</title>
+</head>
+
+<body>
+
+    <header id="admin-header">
+        <i class="fa-solid fa-user-gear"></i>
+        <h1>MODO ADMINISTRADOR</h1>
+    </header>
+
+    <!-- Cartas de opciones -->
+    <div id="contenido-principal">
+        <div id="opt">
+            <h2>Opciones</h2>
+            <section class="row" id="cartas-container">
+                <div class="col-xl-3 col-md-6  carta" data-bs-toggle="modal" data-bs-target="#modal-admin-empresas">
+                    <h3>ADMINISTRAR EMPRESAS</h3>
+                    <img src="assets/img/admin-empresas1.svg" alt="ilust">
+                </div>
+                <div class="col-xl-3 col-md-6 carta" data-bs-toggle="modal" data-bs-target="#modal-admin-productos">
+                    <h3>ADMINISTRAR PRODUCTOS</h3>
+                    <img src="assets/img/admin-productos.svg" alt="ilust">
+                </div>
+                <div class="col-xl-3 col-md-6 carta" data-bs-toggle="modal" data-bs-target="#modal-admin-motoristas">
+                    <h3>VISUALIZAR MOTORISTAS</h3>
+                    <img src="assets/img/admin-motoristas.svg" alt="ilust">
+                </div>
+                <div class="col-xl-3 col-md-6 carta" data-bs-toggle="modal" data-bs-target="#modal-admin-ordenes">
+                    <h3>VISUALIZAR ORDENES</h3>
+                    <img src="assets/img/admin-ordenes1.svg" alt="ilust">
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- Modal Administrar Empresas -->
+    <div class="modal fade" id="modal-admin-empresas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="staticBackdropLabel">Formulario Empresas</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <main id="admin-main">
+                        <form action="" id="admin-form">
+
+                            <div class="campo">
+                                <label for="nombre-empresa">Nombre de empresa</label>
+                                <input type="text" required id="nombre-empresa" class="input" placeholder="nombre">
+                            </div>
+                            <div class="campo">
+                                <label for="nombre-rep">Nombre de representante</label>
+                                <input type="text" required id="nombre-rep" class="input" placeholder="nombre">
+                            </div>
+
+                            <div class="campo">
+                                <label for="descr-empresa">Descripcion de la empresa</label>
+                                <textarea name="descr-empresa" required id="descr-empresa" class="input"
+                                    placeholder="descripcion aqui"></textarea>
+                            </div>
+
+                            <div class="campo">
+                                <label for="tel-empresa">Telefono</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">+504</span>
+                                    <input type="text" required id="tel-empresa" class="input" placeholder="0000-0000">
+                                </div>
+                            </div>
+                            <div class="campo">
+                                <label for="region-empresa">Region</label>
+                                <input type="text" required id="region-empres" class="input" placeholder="lugar">
+                            </div>
+
+                            <label for="id">Categorias que ofrece
+                                <div id="checkbox">
+                                    <div>
+                                        <input type="checkbox" name="tv" id="tv" class="form-check-input">
+                                        <label for="tv">TV</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="laptop" id="laptop" class="form-check-input">
+                                        <label for="laptop">Laptop</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="Celular" id="Celular" class="form-check-input">
+                                        <label for="Celular">Celular</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="consola" id="consola" class="form-check-input">
+                                        <label for="consola">Consola</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="tablet" id="tablet" class="form-check-input">
+                                        <label for="tablet">Tablet</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="smart-watch" id="smart-watch"
+                                            class="form-check-input">
+                                        <label for="smart-watch">Reloj Inteligente</label>
+                                    </div>
+                                </div>
+                            </label>
+
+                        </form>
+                    </main>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Listo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Administrar Productos  -->
+    <div class="modal fade" id="modal-admin-productos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="staticBackdropLabel">Formulario Productos</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <main id="admin-main">
+                        <form action="" id="admin-form">
+
+                            <div class="campo">
+                                <label for="nombre-empresa">Nombre de producto</label>
+                                <input type="text" required id="nombre-empresa" class="input" placeholder="nombre">
+                            </div>
+                            <div class="campo">
+                                <label for="nombre-rep">Empresa </label>
+                                <input type="text" required id="nombre-rep" class="input" placeholder="nombre">
+                            </div>
+
+                            <div class="campo">
+                                <label for="descr-prod">Descripcion tecnica</label>
+                                <textarea name="descr-prod" id="descr-prod" class="input"
+                                    placeholder="descripcion aqui"></textarea>
+                            </div>
+
+                            <div class="campo">
+                                <label for="precio-prod">Precio</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">L.</span>
+                                    <input type="text" id="precio-prod" class="input" placeholder="0.00">
+                                </div>
+                            </div>
+                            <div class="campo">
+                                <label for="cant-prod">Cantidad en almacen</label>
+                                <input type="number" required id="cant-prod" class="input" placeholder="0">
+                            </div>
+                            <div class="campo">
+                                <label for="empresa-prod">Empresa a la que pertenece</label>
+                                <select class="input" name="empresa-prod" id="empresa-prod">
+                                    <option selected hidden>empresa</option>
+                                    <option value="samsung">Samsung</option>
+                                    <option value="huawei">Huawei</option>
+                                    <option value="apple">Apple</option>
+                                    <option value="dell">Dell</option>
+                                    <option value="hp">HP</option>
+                                </select>
+                            </div>
+
+
+                            <label for="id">Categorias a la que pertenece
+                                <div id="checkbox">
+                                    <div>
+                                        <input type="radio" name="categoria-producto" id="tv" class="form-check-input">
+                                        <label for="tv">TV</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="categoria-producto" id="laptop"
+                                            class="form-check-input">
+                                        <label for="laptop">Laptop</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="categoria-producto" id="Celular"
+                                            class="form-check-input">
+                                        <label for="Celular">Celular</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="categoria-producto" id="consola"
+                                            class="form-check-input">
+                                        <label for="consola">Consola</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="categoria-producto" id="tablet"
+                                            class="form-check-input">
+                                        <label for="tablet">Tablet</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="categoria-producto" id="smart-watch"
+                                            class="form-check-input">
+                                        <label for="smart-watch">Reloj Inteligente</label>
+                                    </div>
+                                </div>
+                            </label>
+
+                        </form>
+                    </main>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Listo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Visualizar motoristas  -->
+    <div class="modal fade" id="modal-admin-motoristas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="staticBackdropLabel">Verificar Motoristas</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ordenes-container">
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id motorista:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre:</p>
+                                <p class="descrp">Marlon Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Años de experiencia:</p>
+                                <p class="descrp">5</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Edad:</p>
+                                <p class="descrp">50</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee carro</p>
+                                <p class="descrp">TRUE</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee moto:</p>
+                                <p class="descrp">FALSE</p>
+                            </div>
+                            <div class="btn-motoristas">
+                                <button class="btn btn-primary btn-ordenes">ACEPTAR</button>
+                                <button class="btn btn-secondary btn-ordenes">DENEGAR</button>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id motorista:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre:</p>
+                                <p class="descrp">Marlon Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Años de experiencia:</p>
+                                <p class="descrp">5</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Edad:</p>
+                                <p class="descrp">50</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee carro</p>
+                                <p class="descrp">TRUE</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee moto:</p>
+                                <p class="descrp">FALSE</p>
+                            </div>
+                            <div class="btn-motoristas">
+                                <button class="btn btn-primary btn-ordenes">ACEPTAR</button>
+                                <button class="btn btn-secondary btn-ordenes">DENEGAR</button>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id motorista:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre:</p>
+                                <p class="descrp">Marlon Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Años de experiencia:</p>
+                                <p class="descrp">5</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Edad:</p>
+                                <p class="descrp">50</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee carro</p>
+                                <p class="descrp">TRUE</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee moto:</p>
+                                <p class="descrp">FALSE</p>
+                            </div>
+                            <div class="btn-motoristas">
+                                <button class="btn btn-primary btn-ordenes">ACEPTAR</button>
+                                <button class="btn btn-secondary btn-ordenes">DENEGAR</button>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id motorista:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre:</p>
+                                <p class="descrp">Marlon Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Años de experiencia:</p>
+                                <p class="descrp">5</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Edad:</p>
+                                <p class="descrp">50</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee carro</p>
+                                <p class="descrp">TRUE</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee moto:</p>
+                                <p class="descrp">FALSE</p>
+                            </div>
+                            <div class="btn-motoristas">
+                                <button class="btn btn-primary btn-ordenes">ACEPTAR</button>
+                                <button class="btn btn-secondary btn-ordenes">DENEGAR</button>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id motorista:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre:</p>
+                                <p class="descrp">Marlon Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Años de experiencia:</p>
+                                <p class="descrp">5</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Edad:</p>
+                                <p class="descrp">50</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee carro</p>
+                                <p class="descrp">TRUE</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee moto:</p>
+                                <p class="descrp">FALSE</p>
+                            </div>
+                            <div class="btn-motoristas">
+                                <button class="btn btn-primary btn-ordenes">ACEPTAR</button>
+                                <button class="btn btn-secondary btn-ordenes">DENEGAR</button>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id motorista:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre:</p>
+                                <p class="descrp">Marlon Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Años de experiencia:</p>
+                                <p class="descrp">5</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Edad:</p>
+                                <p class="descrp">50</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee carro</p>
+                                <p class="descrp">TRUE</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Posee moto:</p>
+                                <p class="descrp">FALSE</p>
+                            </div>
+                            <div class="btn-motoristas">
+                                <button class="btn btn-primary btn-ordenes">ACEPTAR</button>
+                                <button class="btn btn-secondary btn-ordenes">DENEGAR</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal visualizar Ordenes -->
+    <div class="modal fade" id="modal-admin-ordenes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="staticBackdropLabel">Ordenes Pendientes</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="ordenes-container">
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id Orden:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre Cliente:</p>
+                                <p class="descrp">Kenneth Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado"></p>
+                                <div class="productos bold">
+                                    <p class="descrp">CANT</p>
+                                    <p class="descrp">DESCR</p>
+                                    <p class="descrp">PRECIO</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Carrito:</p>
+                                <div class="productos">
+                                    <p class="descrp">5</p>
+                                    <p class="descrp">samsung</p>
+                                    <p class="descrp">688</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Total:</p>
+                                <p class="descrp">5775</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Asignar a motorista:</p>
+                                <select class="input input2" name="" id="">
+                                    <option value="" hidden selected>...</option>
+                                    <option value="">Noe Sosa</option>
+                                    <option value="">Joann Colindres</option>
+                                    <option value="">Vanessa Sierra</option>
+                                    <option value="">Juan Gomez</option>
+
+                                </select>
+                            </div>
+                            <button class="btn btn-primary btn-ordenes">LISTO</button>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id Orden:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre Cliente:</p>
+                                <p class="descrp">Kenneth Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado"></p>
+                                <div class="productos">
+                                    <p class="descrp">CANT</p>
+                                    <p class="descrp">DESCRIPCION</p>
+                                    <p class="descrp">PRECIO</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Carrito:</p>
+                                <div class="productos">
+                                    <p class="descrp">5</p>
+                                    <p class="descrp">samsung</p>
+                                    <p class="descrp">688</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Total:</p>
+                                <p class="descrp">5775</p>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id Orden:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre Cliente:</p>
+                                <p class="descrp">Kenneth Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado"></p>
+                                <div class="productos">
+                                    <p class="descrp">CANT</p>
+                                    <p class="descrp">DESCRIPCION</p>
+                                    <p class="descrp">PRECIO</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Carrito:</p>
+                                <div class="productos">
+                                    <p class="descrp">5</p>
+                                    <p class="descrp">samsung</p>
+                                    <p class="descrp">688</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Total:</p>
+                                <p class="descrp">5775</p>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id Orden:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre Cliente:</p>
+                                <p class="descrp">Kenneth Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado"></p>
+                                <div class="productos">
+                                    <p class="descrp">CANT</p>
+                                    <p class="descrp">DESCRIPCION</p>
+                                    <p class="descrp">PRECIO</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Carrito:</p>
+                                <div class="productos">
+                                    <p class="descrp">5</p>
+                                    <p class="descrp">samsung</p>
+                                    <p class="descrp">688</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Total:</p>
+                                <p class="descrp">5775</p>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id Orden:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre Cliente:</p>
+                                <p class="descrp">Kenneth Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado"></p>
+                                <div class="productos">
+                                    <p class="descrp">CANT</p>
+                                    <p class="descrp">DESCRIPCION</p>
+                                    <p class="descrp">PRECIO</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Carrito:</p>
+                                <div class="productos">
+                                    <p class="descrp">5</p>
+                                    <p class="descrp">samsung</p>
+                                    <p class="descrp">688</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Total:</p>
+                                <p class="descrp">5775</p>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id Orden:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre Cliente:</p>
+                                <p class="descrp">Kenneth Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado"></p>
+                                <div class="productos">
+                                    <p class="descrp">CANT</p>
+                                    <p class="descrp">DESCRIPCION</p>
+                                    <p class="descrp">PRECIO</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Carrito:</p>
+                                <div class="productos">
+                                    <p class="descrp">5</p>
+                                    <p class="descrp">samsung</p>
+                                    <p class="descrp">688</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Total:</p>
+                                <p class="descrp">5775</p>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id Orden:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre Cliente:</p>
+                                <p class="descrp">Kenneth Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado"></p>
+                                <div class="productos">
+                                    <p class="descrp">CANT</p>
+                                    <p class="descrp">DESCRIPCION</p>
+                                    <p class="descrp">PRECIO</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Carrito:</p>
+                                <div class="productos">
+                                    <p class="descrp">5</p>
+                                    <p class="descrp">samsung</p>
+                                    <p class="descrp">688</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Total:</p>
+                                <p class="descrp">5775</p>
+                            </div>
+                        </div>
+                        <div class="orden">
+                            <div class="detalle">
+                                <p class="enunciado">Id Orden:</p>
+                                <p class="descrp">838</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Nombre Cliente:</p>
+                                <p class="descrp">Kenneth Contreras</p>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado"></p>
+                                <div class="productos">
+                                    <p class="descrp">CANT</p>
+                                    <p class="descrp">DESCRIPCION</p>
+                                    <p class="descrp">PRECIO</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Carrito:</p>
+                                <div class="productos">
+                                    <p class="descrp">5</p>
+                                    <p class="descrp">samsung</p>
+                                    <p class="descrp">688</p>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <p class="enunciado">Total:</p>
+                                <p class="descrp">5775</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <!-- FOTNT AWESOME -->
+    <script src="https://kit.fontawesome.com/8b44041adf.js" crossorigin="anonymous"></script>
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
+        integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

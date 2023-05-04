@@ -1,0 +1,51 @@
+[{
+    "nombre": "Laptops",
+    "imagen": "ordenador-portatil.png",
+    "productos": [
+        {
+          "$oid": "644eaa2402f646e90fd1407e"
+        }
+      ]
+},
+{
+    "nombre": "Celulares",
+    "imagen": "smartphone.png",
+    "productos": [
+        {
+          "$oid": "644eaa2402f646e90fd1407e"
+        }
+      ]
+},{
+    "nombre": "TV",
+    "imagen": "smart-tv.png",
+    "productos": [
+        {
+          "$oid": "644eaa2402f646e90fd1407e"
+        }
+      ]
+},{
+    "nombre": "consolas",
+    "imagen": "consola.png",
+    "productos": [
+        {
+          "$oid": "644eaa2402f646e90fd1407e"
+        }
+      ]
+},{
+    "nombre": "Tablets",
+    "imagen": "tableta.png",
+    "productos": [
+        {
+          "$oid": "644eaa2402f646e90fd1407e"
+        }
+      ]
+},
+{
+    "nombre": "Relojes Inteligentes",
+    "imagen": "smart-watch.png",
+    "productos": [
+        {
+          "$oid": "644eaa2402f646e90fd1407e"
+        }
+      ]
+}]
