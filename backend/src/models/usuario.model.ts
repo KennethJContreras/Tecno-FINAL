@@ -9,7 +9,8 @@ export interface Usuario {
     direccion: string;
     telefono: string;
     tarjetaDeCredito: string;
+    ordenes: Array<mongoose.Types.ObjectId>,
     miListaDeseos: Array<mongoose.Types.ObjectId>;
-    miCarrito: Array<mongoose.Types.ObjectId>;
+    miCarrito: Array<{idProducto: mongoose.Types.ObjectId, unidades: number}>;
     pedidos: Array<mongoose.Types.ObjectId>
 }

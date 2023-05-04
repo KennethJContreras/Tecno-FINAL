@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
 import { IProducto } from "./producto.model";
 
 var schema = new mongoose.Schema({
@@ -6,6 +6,8 @@ var schema = new mongoose.Schema({
     descripcion: String,
     imagen: String,
     precio: Number,
+    categoria: Schema.Types.ObjectId,
+    empresa: Schema.Types.ObjectId,
     subCategoria: { type: String, enum: ["hogar", "diversion", "educacion"]}
 });
 

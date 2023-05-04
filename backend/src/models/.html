@@ -1,0 +1,19 @@
+<div id="pa-vender">
+    <img src="assets/img/productos/${producto.imagen}" alt="">
+    <div id="der-pa-vender">
+        <div id="info">
+            <div id="titulo-info">${producto.nombre}</div>
+            <div id="especificaciones">${producto.descripcion}</div>
+        </div>
+        <div id="precio-corazon">
+            <div id="precio">${producto.precio}</div>
+            <div>
+                <button id="comprar" data-bs-toggle="modal" data-bs-target="#comprar-producto"
+                    onclick="llenarModalProducto('${producto._id}')">
+                    DETALLES
+                </button>
+                <i class="fa-solid fa-heart" onclick="añadirProductoCarrito('${producto._id}')"></i>
+            </div>
+        </div>
+    </div>
+</div>

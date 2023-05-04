@@ -28,6 +28,6 @@ const mongoose_1 = __importStar(require("mongoose"));
 const PedidoSchema = new mongoose_1.default.Schema({
     ordenes: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'productos' }],
     total: { type: Number, required: true },
-    status: { type: String, enum: ["en-proceso", "procesada", "pendiente"], required: true }
+    status: { type: String, enum: ["en-proceso", "procesada", "pendiente"], default: "pendiente", required: true }
 });
 exports.PedidosSchema = mongoose_1.default.model('pedidos', PedidoSchema);

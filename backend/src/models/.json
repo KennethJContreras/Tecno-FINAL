@@ -1,51 +1,106 @@
-[{
-    "nombre": "Laptops",
-    "imagen": "ordenador-portatil.png",
-    "productos": [
-        {
-          "$oid": "644eaa2402f646e90fd1407e"
-        }
-      ]
-},
-{
-    "nombre": "Celulares",
-    "imagen": "smartphone.png",
-    "productos": [
-        {
-          "$oid": "644eaa2402f646e90fd1407e"
-        }
-      ]
-},{
-    "nombre": "TV",
-    "imagen": "smart-tv.png",
-    "productos": [
-        {
-          "$oid": "644eaa2402f646e90fd1407e"
-        }
-      ]
-},{
-    "nombre": "consolas",
-    "imagen": "consola.png",
-    "productos": [
-        {
-          "$oid": "644eaa2402f646e90fd1407e"
-        }
-      ]
-},{
-    "nombre": "Tablets",
-    "imagen": "tableta.png",
-    "productos": [
-        {
-          "$oid": "644eaa2402f646e90fd1407e"
-        }
-      ]
-},
-{
-    "nombre": "Relojes Inteligentes",
-    "imagen": "smart-watch.png",
-    "productos": [
-        {
-          "$oid": "644eaa2402f646e90fd1407e"
-        }
-      ]
-}]
+/* LAPTOP */
+64533ac3be68cadabcde75ad
+64533ac3be68cadabcde75af
+64533c8abe68cadabce448af
+64533c8abe68cadabce448b2
+64533c8abe68cadabce448b6
+64533e3dbe68cadabce9d478
+64533f1ebe68cadabceca441
+64533f1ebe68cadabceca443
+
+/* CELULAR */
+64533ac3be68cadabcde75ae
+64533c8abe68cadabce448ae
+64533e3dbe68cadabce9d477
+64533f1ebe68cadabceca442
+
+
+/* TV */
+64533ac3be68cadabcde75b1
+64533c8abe68cadabce448b5
+64533e3dbe68cadabce9d47a
+
+
+/* SMARTW */
+64533ac3be68cadabcde75b3
+64533c8abe68cadabce448b1
+64533e3dbe68cadabce9d47b
+
+
+/* CONSOLA */
+64533ac3be68cadabcde75b0
+
+/* TABLET */
+64533ac3be68cadabcde75b2
+64533c8abe68cadabce448b0
+64533e3dbe68cadabce9d479
+
+estaa
+/* SONIDO */
+
+64533f1ebe68cadabceca445
+64533f1ebe68cadabceca444
+64533c8abe68cadabce448b3
+estaa
+/* OTROS */
+64533c8abe68cadabce448b4
+
+/* EMPRESAS */
+/* SAMSUNG */
+64533ac3be68cadabcde75b1
+64533ac3be68cadabcde75b3
+64533e3dbe68cadabce9d477
+64533e3dbe68cadabce9d478
+64533e3dbe68cadabce9d479
+64533e3dbe68cadabce9d47a
+64533e3dbe68cadabce9d47b
+
+/* APPLE */
+64533ac3be68cadabcde75ae
+64533ac3be68cadabcde75b2
+64533c8abe68cadabce448ae
+64533c8abe68cadabce448af
+64533c8abe68cadabce448b0
+64533c8abe68cadabce448b1
+64533c8abe68cadabce448b2
+64533c8abe68cadabce448b3
+64533c8abe68cadabce448b5
+64533c8abe68cadabce448b6
+
+
+/* LENOVO */
+64533ac3be68cadabcde75ad
+
+
+/* PLAYSTATION */
+64533ac3be68cadabcde75b0
+
+/* LG */
+64533c8abe68cadabce448b4
+64533f1ebe68cadabceca441
+64533f1ebe68cadabceca442
+64533f1ebe68cadabceca443
+64533f1ebe68cadabceca444
+64533f1ebe68cadabceca445
+
+estaaa
+/* HP */
+64533ac3be68cadabcde75af
+
+
+/* HEREEE */
+/* EMPRESAS */
+6453402ebe68cadabceff7ed APPLE
+6453402ebe68cadabceff7ee SAMSUNG
+6453402ebe68cadabceff7ef LENOVO
+6453402ebe68cadabceff7f0 LG
+6453402ebe68cadabceff7f1 PLAY
+
+/* cate */
+645321bdbe68cadabc91ce1f LAPTOP
+645321bdbe68cadabc91ce20 CELU
+645321bdbe68cadabc91ce21 TV
+645321bdbe68cadabc91ce22 CONS
+645321bdbe68cadabc91ce23 TABLETS
+645321bdbe68cadabc91ce24 RELOJ
+

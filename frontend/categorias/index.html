@@ -19,20 +19,28 @@
 <body>
     <nav>
         <div class="nav-izq">
-            <img src="assets/img/logo-blanco.png" alt="">
+            <a href="index.html"><img src="assets/img/logo-blanco.png" alt=""></a>
         </div>
         <div class="nav-der">
-            <div class="lista click" onclick="renderizarListaDeseos()" data-bs-target="#mi-lista" aria-controls="offcanvasRight">
-                <p data-bs-toggle="offcanvas">Mi lista</p>
+            <div class="lista click" data-bs-target="#mi-lista" aria-controls="offcanvasRight"
+                data-bs-toggle="offcanvas" onclick="renderizarListaDeseos()">
+                <p>Mi lista</p>
                 <i class="fa-regular fa-heart"></i>
             </div>
-            <div class="carrito click" onclick="renderizarCarrito()" data-bs-target="#mi-carrito" aria-controls="offcanvasRight">
-                <p data-bs-toggle="offcanvas">Carrito</p>
+            <div class="carrito click" onclick="renderizarCarrito()" data-bs-target="#mi-carrito"
+                aria-controls="offcanvasRight" data-bs-toggle="offcanvas">
+                <p>Carrito</p>
                 <img id="carrito-compras" src="assets/img/carrito-de-compras.png" alt="">
             </div>
-            <div class="perfil click">
-                <p id="nombre-usuario">Nombre completo</p>
-                <img id="img-perfil" src="assets/img/woman.png" alt="">
+            <div class="perfil click dropdown">
+                <div class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <p id="nombre-usuario"></p>
+                    <img id="img-perfil" src="assets/img/woman.png" alt="">
+                </div>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../bienvenido-tecnoshop/index.html"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+                  </ul>
             </div>
         </div>
     </nav>
@@ -100,7 +108,7 @@
                                     <button id="comprar" data-bs-toggle="modal" data-bs-target="#comprar-producto">
                                         DETALLES
                                     </button>
-                                    <i class="fa-solid fa-heart"></i>
+                                    <i class="fa-solid fa-heart" onclick="añadirProductoCarrito()"></i>
                                 </div>
                             </div>
                         </div>
@@ -161,36 +169,36 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div id="title-producto-modal" class="modal-header">
-                    <h5 class="modal-title" id="info-producto-modal">Información de la empresa</h5>
+                    <h5 class="modal-title" id="info-producto-modal">DETALLE</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="card mb-3">
-                        <h5 class="card-title">Samsung Chromebook 4</h5>
-                        <h6>L. <span>10000</span></h6>
+                        <h5 class="card-title" id="detalle-nombre">Samsung Chromebook 4</h5>
+                        <h6>L. <span id="detalle-precio">10000</span></h6>
                         <span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
                                 class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
                                 class="fa-solid fa-star"></i></span>
-                        <img id="img-producto-modal" src="assets/img/imagenes-categorias/ordenador-portatil.png"
+                        <img id="img-producto-modal" id="detalle-imagen" src="assets/img/imagenes-categorias/ordenador-portatil.png"
                             class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text">4 pulgadas, procesador intel core i7-1360P de 13 generación 16 GB
+                            <p class="card-text" id="detalle-descripcion">4 pulgadas, procesador intel core i7-1360P de 13 generación 16 GB
                                 /512 GB, pantalla Amoled 3K , 120 HZ , lector de huellas dactilares.</p>
                             <p class="card-text">
                                 <hr>
                             <div class="detalles-entrega">
-                                <p>MARCA</p>
-                                <p id="pertenece">Samsung</p>
+                                <p>MARCA: </p>
+                                <p id="detalle-empresa" id="pertenece">Samsung</p>
                             </div>
                             <form action="" id="form-unidades">
                                 <label for="">Unidades</label>
-                                <input type="number">
+                                <input type="number" id="inp-unidades">
                             </form>
                             <div id="carrito-fav">
-                                <button id="comprar" data-bs-toggle="modal" data-bs-target="#comprar-producto">
+                                <button id="comprar" data-bs-toggle="modal" data-bs-target="#comprar-producto" onclick="">
                                     Agregar a carrito
                                 </button>
-                                <button id="btn-favoritos">Agregar a favoritos</button>
+                                <button id="btn-favoritos" onclick="">Agregar a favoritos</button>
                             </div>
                             <hr>
                             <div class="detalles-entrega">
@@ -214,10 +222,8 @@
                             </div>
                             <hr>
                             <div id="hastags" class="detalles-entrega">
-                                <p>CATEGORIAS</p>
-                                <a href="">Hogar</a>
-                                <a href="">Sala de estar</a>
-                                <a href="">diversion</a>
+                                <p>SUBCATEGORIA</p>
+                                <a href="" id="detalle-sub-categoria">Hogar</a>
                             </div>
                         </div>
                     </div>
@@ -249,7 +255,7 @@
         <div class="offcanvas-body" id="listaDeseos">
         </div>
     </div>
-    
+
     <footer> © Copyright</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

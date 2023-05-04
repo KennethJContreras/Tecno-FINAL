@@ -25,11 +25,10 @@ const obtenerPedidos = (req, res) => {
 };
 exports.obtenerPedidos = obtenerPedidos;
 const crearPedido = (req, res) => {
-    const { ordenes, total, status } = req.body;
+    const { ordenes, total } = req.body;
     const nuevoPedido = new pedido_schema_1.PedidosSchema({
         ordenes,
-        total,
-        status
+        total
     });
     nuevoPedido.save()
         .then(resultado => {

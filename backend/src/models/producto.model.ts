@@ -7,6 +7,8 @@ export interface IProducto {
     descripcion: string;
     imagen: string;
     precio: number;
-    subCategorias: subCategoria
+    categoria: mongoose.Types.ObjectId;
+    empresa: mongoose.Types.ObjectId;
+    subCategorias: subCategoria;
 }
 

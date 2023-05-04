@@ -4,10 +4,10 @@ import { obtenerUsuario, obtenerUsuarios, crearUsuario, añadirMiCarrito, añadi
 const router = express.Router();
 
 router.get('/', obtenerUsuario);
-router.get('/:id', obtenerUsuarioPorId);
 router.post('/', crearUsuario);
+router.get('/:id', obtenerUsuarioPorId);
 router.put('/:id/carrito', añadirMiCarrito);
-router.put('/:id/lista-deseos', añadirMiListaDeDeseos);
 router.put('/:id/pedidos', añadirPedido);
+router.put('/:id/lista-deseos', añadirMiListaDeDeseos);
 
 export default router;

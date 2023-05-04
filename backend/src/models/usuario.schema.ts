@@ -9,8 +9,9 @@ const schema = new Schema<Usuario>({
     direccion: String,
     telefono: String,
     tarjetaDeCredito: String,
+    ordenes: Array<Schema.Types.ObjectId>,
     miListaDeseos: Array<Schema.Types.ObjectId>,
-    miCarrito: Array<Schema.Types.ObjectId>,
+    miCarrito: Array<{idProducto: Schema.Types.ObjectId, unidades: Number}>,
     pedidos: Array<Schema.Types.ObjectId>
 })
 

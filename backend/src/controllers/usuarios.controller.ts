@@ -75,7 +75,7 @@ export const añadirMiCarrito = (req: Request, res: Response) => {
     Usuarioschema.findById(req.params.id)
     .then(usuario => {
         if (usuario) {
-            usuario.miCarrito.push(req.body.idProducto);
+            usuario.miCarrito.push({idProducto: req.body.idProducto, unidades: req.body.unidades});
             usuario.save()
                 .then(result => res.send(result))
                 .catch(error => console.log(error));

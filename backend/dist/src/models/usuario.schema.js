@@ -33,6 +33,7 @@ const schema = new mongoose_1.Schema({
     direccion: String,
     telefono: String,
     tarjetaDeCredito: String,
+    ordenes: (Array),
     miListaDeseos: (Array),
     miCarrito: (Array),
     pedidos: (Array)

@@ -24,12 +24,11 @@ export const obtenerPedidos = (req: Request, res: Response) => {
 }
 
 export const crearPedido = (req: Request, res: Response) => {
-    const { ordenes, total, status }  = req.body;
+    const { ordenes, total }  = req.body;
 
     const nuevoPedido = new PedidosSchema({
         ordenes,
-        total,
-        status
+        total
     });
 
     nuevoPedido.save()

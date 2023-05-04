@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { OrdenesSchema } from "../models/orden.schema";
 
 export const obtenerOrden = (req: Request, res: Response) => {
-    OrdenesSchema.findOne({ email: req.params.email, contraseña: req.params.contraseña })
+    OrdenesSchema.findById(req.params.id)
         .then(resultado => {
             res.send(resultado);
             res.end();
@@ -24,14 +24,12 @@ export const obtenerOrdenes = (req: Request, res: Response) => {
 }
 
 export const crearOrden = (req: Request, res: Response) => {
-    const { nombre, apellido, contraseña, email, telefono } = req.body;
+    const { producto, cantidad, subTotal} = req.body;
 
     const nuevaOrden = new OrdenesSchema({
-        nombre,
-        apellido,
-        email,
-        contraseña,
-        telefono
+        producto,
+        cantidad,
+        subTotal,
     });
 
     nuevaOrden.save()
