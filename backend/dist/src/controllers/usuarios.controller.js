@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.añadirPedido = exports.añadirMiCarrito = exports.añadirMiListaDeDeseos = exports.crearUsuario = exports.obtenerUsuarios = exports.obtenerUsuarioPorId = exports.obtenerUsuario = void 0;
+exports.añadirOrden = exports.añadirPedido = exports.eliminarProductoListaDeseos = exports.eliminarProductoCarrito = exports.añadirMiCarrito = exports.añadirMiListaDeDeseos = exports.crearUsuario = exports.obtenerUsuarios = exports.obtenerUsuarioPorId = exports.obtenerUsuario = void 0;
 const usuario_schema_1 = require("../models/usuario.schema");
 const obtenerUsuario = (req, res) => {
     usuario_schema_1.Usuarioschema.findOne({ email: req.query.email, contraseña: req.query.contrasenia })
@@ -83,6 +83,40 @@ const añadirMiCarrito = (req, res) => {
         .catch(error => console.log(error));
 };
 exports.añadirMiCarrito = añadirMiCarrito;
+const eliminarProductoCarrito = (req, res) => {
+    usuario_schema_1.Usuarioschema.findById(req.params.id)
+        .then(usuario => {
+        if (usuario) {
+            usuario.miCarrito.forEach(carrito => {
+                const index = usuario.miCarrito.findIndex(producto => producto.idProducto === req.body.idProducto);
+                if (index !== -1) {
+                    usuario.miCarrito.splice(index, 1);
+                }
+            });
+            usuario.save()
+                .then(result => { res.send(result); console.log("exito"); })
+                .catch(error => console.log(error));
+        }
+    })
+        .catch(error => console.log(error));
+};
+exports.eliminarProductoCarrito = eliminarProductoCarrito;
+const eliminarProductoListaDeseos = (req, res) => {
+    usuario_schema_1.Usuarioschema.findById(req.params.id)
+        .then(usuario => {
+        if (usuario) {
+            const index = usuario.miListaDeseos.findIndex(producto => producto === req.body.idProducto);
+            if (index !== -1) {
+                usuario.miListaDeseos.splice(index, 1);
+            }
+            usuario.save()
+                .then(result => res.send(result))
+                .catch(error => console.log(error));
+        }
+    })
+        .catch(error => console.log(error));
+};
+exports.eliminarProductoListaDeseos = eliminarProductoListaDeseos;
 const añadirPedido = (req, res) => {
     usuario_schema_1.Usuarioschema.findById(req.params.id)
         .then(usuario => {
@@ -96,3 +130,16 @@ const añadirPedido = (req, res) => {
         .catch(error => console.log(error));
 };
 exports.añadirPedido = añadirPedido;
+const añadirOrden = (req, res) => {
+    usuario_schema_1.Usuarioschema.findById(req.params.id)
+        .then(usuario => {
+        if (usuario) {
+            usuario.ordenes.push(req.body.idOrden);
+            usuario.save()
+                .then(result => res.send(result))
+                .catch(error => console.log(error));
+        }
+    })
+        .catch(error => console.log(error));
+};
+exports.añadirOrden = añadirOrden;

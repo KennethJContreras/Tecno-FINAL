@@ -39,8 +39,9 @@
                 </div>
 
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="../bienvenido-tecnoshop/index.html"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
-                  </ul>
+                    <li><a class="dropdown-item" href="../bienvenido-tecnoshop/index.html"><i
+                                class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -71,10 +72,6 @@
                         </div>
                         <div id="filtro-abajo">
                             <div>Marcas</div>
-                            <label><input type="checkbox" name="" id="">Samsung</label>
-                            <label><input type="checkbox" name="" id="">Apple</label>
-                            <label><input type="checkbox" name="" id="">Huawei</label>
-                            <label><input type="checkbox" name="" id="">Dell</label>
                         </div>
                     </div>
                     <div id="medida-pago">
@@ -90,50 +87,6 @@
                 <div id="articulos">
                     <div id="banner-nombre-empresa" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Productos
-                    </div>
-                    <div id="pa-vender">
-                        <img src="assets/img/imagenes-categorias/ordenador-portatil.png" alt="">
-                        <div id="der-pa-vender">
-                            <div id="info">
-                                <div id="titulo-info">Samsung Chromebook 4</div>
-                                <div id="especificaciones">4 pulgadas, procesador intel core i7-1360P de 13 generación
-                                    16 GB
-                                    /512 GB, pantalla Amoled 3K , 120 HZ , lector de huellas dactilares.</div>
-                            </div>
-                            <div id="precio-corazon">
-                                <div id="precio">
-                                    L. 10,000
-                                </div>
-                                <div>
-                                    <button id="comprar" data-bs-toggle="modal" data-bs-target="#comprar-producto">
-                                        DETALLES
-                                    </button>
-                                    <i class="fa-solid fa-heart" onclick="añadirProductoCarrito()"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="pa-vender">
-                        <img src="assets/img/imagenes-categorias/ordenador-portatil.png" alt="">
-                        <div id="der-pa-vender">
-                            <div id="info">
-                                <div id="titulo-info">Samsung Chromebook 4</div>
-                                <div id="especificaciones">4 pulgadas, procesador intel core i7-1360P de 13 generación
-                                    16 GB
-                                    /512 GB, pantalla Amoled 3K , 120 HZ , lector de huellas dactilares.</div>
-                            </div>
-                            <div id="precio-corazon">
-                                <div id="precio">
-                                    L. 10,000
-                                </div>
-                                <div>
-                                    <button id="comprar" data-bs-toggle="modal" data-bs-target="#comprar-producto">
-                                        DETALLES
-                                    </button>
-                                    <i class="fa-solid fa-heart"></i>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -174,30 +127,27 @@
                 </div>
                 <div class="modal-body">
                     <div class="card mb-3">
-                        <h5 class="card-title" id="detalle-nombre">Samsung Chromebook 4</h5>
-                        <h6>L. <span id="detalle-precio">10000</span></h6>
+                        <h5 class="card-title" id="detalle-nombre"></h5>
+                        <h6>L. <span id="detalle-precio"></span></h6>
                         <span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
                                 class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
                                 class="fa-solid fa-star"></i></span>
-                        <img id="img-producto-modal" id="detalle-imagen" src="assets/img/imagenes-categorias/ordenador-portatil.png"
-                            class="card-img-top" alt="...">
+                        <img id="img-producto-modal" id="detalle-imagen"
+                            src="assets/img/imagenes-categorias/ordenador-portatil.png" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text" id="detalle-descripcion">4 pulgadas, procesador intel core i7-1360P de 13 generación 16 GB
-                                /512 GB, pantalla Amoled 3K , 120 HZ , lector de huellas dactilares.</p>
+                            <p class="card-text" id="detalle-descripcion"></p>
                             <p class="card-text">
                                 <hr>
                             <div class="detalles-entrega">
                                 <p>MARCA: </p>
-                                <p id="detalle-empresa" id="pertenece">Samsung</p>
+                                <p id="detalle-empresa" id="pertenece"></p>
                             </div>
                             <form action="" id="form-unidades">
                                 <label for="">Unidades</label>
                                 <input type="number" id="inp-unidades">
                             </form>
                             <div id="carrito-fav">
-                                <button id="comprar" data-bs-toggle="modal" data-bs-target="#comprar-producto" onclick="">
-                                    Agregar a carrito
-                                </button>
+                                <button id="comprar" class="comprar" onclick="">Agregar a carrito</button>
                                 <button id="btn-favoritos" onclick="">Agregar a favoritos</button>
                             </div>
                             <hr>
@@ -239,20 +189,60 @@
     <!--MODAL CARRITO-->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="mi-carrito" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">MI CARRITO</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body" id="listaCarrito">
         </div>
+        <p class="card-text" id="total">Total: </p>
+        <button class="btn-cool" onclick="procesarPedido()" data-bs-toggle="modal" data-bs-target="#modalPedido" data-bs-dismiss="offcanvas"
+            aria-label="Close"><span>Pagar</span></button>
     </div>
 
     <!-- MODAL LISTA DESEOS -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="mi-lista" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">LISTA DE DESEOS</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body" id="listaDeseos">
+        </div>
+    </div>
+
+    <!-- MODAL DE PEDIDO -->
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="modalPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fa-solid fa-circle-check" style="color: #13be13;"></i> Su pedido ha sido procesado exitosamente!</h2> 
+                </div>
+                <div class="modal-body" styles="" id="body-pedido">
+                    <h2 class="modal-title fs-5" id="exampleModalLabel">Resumen de Transaccion</h2>
+                
+                    <div class="grid">
+                        <p >Total a pagar:</p>
+                        <p id="pedido-total"></p>
+                    </div>
+                    <div class="grid">
+                        <p>Se aplicó el cobro al No. tarjeta:</p>
+                        <p id="pedido-tarjeta-credito"></p>
+                    </div>
+                    <div class="grid">
+                        <p>Direccion de Entrega:</p>
+                        <p id="pedido-direccion"</p>
+                    </div>
+                    <div class="grid">
+                        <p>Hora:</p>
+                        <p id="Hora"</p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
 

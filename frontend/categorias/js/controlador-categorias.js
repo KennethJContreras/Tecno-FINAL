@@ -1,6 +1,7 @@
 var productosAListaDeseos = [];
 document.getElementById('ejemplo').style.display = "none";
 document.getElementById('productos').style.display = "none";
+const fechaActual = new Date();
 
 /* CONSUMIMOS SERVICIOS */
 const obtenerCategoria = (id) => {
@@ -53,14 +54,60 @@ const obtenerOrden = (id) => {
   return new Promise((resolve, reject) => {
     fetch(`http://localhost:2000/ordenes/${id}`, {
       method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
       redirect: 'follow'
     })
-      .then(response => response.json())
       .then(result => {
         resolve(result);
       })
       .catch(error => {
         console.log('error', error);
+        reject(error);
+      });
+  });
+};
+
+const añadirOrdenUsuario = (idOrden) => {
+  return new Promise((resolve, reject) => {
+    fetch(`http://localhost:2000/usuarios/${usuario._id}/ordenes`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idOrden }),
+      redirect: 'follow'
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(result => {
+        resolve(result);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+};
+
+const añadirPedidoUsuario = (idPedido) => {
+  return new Promise((resolve, reject) => {
+    fetch(`http://localhost:2000/usuarios/${usuario._id}/pedidos`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idPedido }),
+      redirect: 'follow'
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(result => {
+        resolve(result);
+      })
+      .catch(error => {
         reject(error);
       });
   });
@@ -121,6 +168,33 @@ const obtenerProductosPorCategoria = (idCategoria) => {
   });
 }
 
+const removerProductoCarrito = (idProducto) => {
+  console.log(usuario._id)
+  console.log(idProducto)
+  fetch(`http://localhost:2000/usuarios/${usuario._id}/eliminar-de-carrito`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idProducto: idProducto }),
+    redirect: 'follow'
+  })
+    .then(response => response.json())
+    .then(result => renderizarCarrito())
+    .catch(error => console.log('error', error));
+}
+
+const removerProductoListaDeseos = (idProducto) => {
+  fetch(`http://localhost:2000/usuarios/${usuario._id}/eliminar-de-lista-deseos`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idProducto: idProducto }),
+    redirect: 'follow'
+  })
+    .then(response => response.json())
+    .then(result => renderizarListaDeseos())
+    .catch(error => console.log('error', error));
+
+}
+
 const obtenerProductosPorCategoriaEmpresa = (idCategoria, idEmpresa) => {
   return new Promise((resolve, reject) => {
     fetch(`http://localhost:2000/productos/${idCategoria}/${idEmpresa}`, {
@@ -137,53 +211,65 @@ const obtenerProductosPorCategoriaEmpresa = (idCategoria, idEmpresa) => {
   });
 }
 
-
-/* RENDERIZACION */
-const añadirOrden = (idProducto) => {
-  const orden = {
-    producto: idProducto,
-    cantidad: document.getElementById("").value,
-    subTotal: (document.getElementById("").value * document.getElementById("").value)
-  }
-
-  fetch("http://localhost:2000/ordenes/", {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(orden),
-    redirect: 'follow'
-  })
-    .then(result => {
-      if (!result.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return result.json();
-    })
-    .then(orden => {
-      obtenerUsuario(usuario._id)
-        .then(usr => {
-          usr.ordenes.push(orden._id);
-          usr.save();
-        })
-        .catch(e => console.log(e));
-    })
-    .catch(error => {
-/*          document.getElementById("form-login").reset();
- */     });
+const añadirOrden = () => {
+  return new Promise((resolve, reject) => {
+    obtenerUsuario(usuario._id)
+      .then(usuario => {
+        usuario.miCarrito.forEach(producto => {
+          obtenerProducto(producto.idProducto)
+            .then(prod => {
+              const orden = {
+                producto: producto.idProducto,
+                cantidad: producto.unidades,
+                subTotal: (producto.unidades * prod.precio)
+              };
+              fetch("http://localhost:2000/ordenes/", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orden),
+                redirect: 'follow'
+              })
+                .then(result => {
+                  if (!result.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return result.json();
+                })
+                .then(orden => {
+                  console.log(orden._id);
+                  añadirOrdenUsuario(orden._id)
+                  .then(res => console.log(res))
+                  .catch(error => console.log(error));
+                })
+                .catch(error => reject(error));
+            });
+        });
+        resolve('Orders added successfully');
+      })
+      .catch(error => reject(error));
+  });
 };
 
-const añadirPedido = (idProducto) => {
-  let totalNeto;
-  obtenerUsuario(usuario._id)
-    .then(usr => {
-      usr.ordenes.forEach(orden => {
-        obtenerOrden(orden)
-          .then(orden => {
-            total += orden.subTotal;
-          })
-          .catch(e => console.log(e));
+const añadirPedido = () => {
+  return new Promise((resolve, reject) => {
+    let totalNeto = 0;
+    let stackOrdenes = [];
 
+    obtenerUsuario(usuario._id)
+      .then(usr => {
+        usr.ordenes.forEach(orden => {
+          obtenerOrden(orden)
+            .then(order => {
+              stackOrdenes.push(orden);
+              totalNeto += order.subTotal;
+            })
+            .catch(e => {
+              reject(e);
+            });
+        })
+console.log(stackOrdenes);
         const pedido = {
-          ordenes: usr.ordenes,
+          ordenes: stackOrdenes,
           total: totalNeto
         };
 
@@ -195,26 +281,34 @@ const añadirPedido = (idProducto) => {
         })
           .then(result => {
             if (!result.ok) {
-              throw new Error('Network response was not ok');
+              reject(new Error('Network response was not ok'));
             }
             return result.json();
           })
           .then(pedido => {
-            window.alert("Su pedido ha sido procesado");
+            añadirPedidoUsuario(pedido._id)
+              .then(res => {
+                resolve(res);
+              })
+              .catch(error => {
+                reject(error);
+              });
           })
           .catch(error => {
-    /*         document.getElementById("form-login").reset();
-     */    });
+            reject(error);
+          });
       })
-    })
-    .catch(e => console.log(e));
+      .catch(e => {
+        reject(e);
+      });
+  });
 };
 
 const añadirProductoDeseos = (idProducto) => {
   fetch(`http://localhost:2000/usuarios/${usuario._id}/lista-deseos`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(idProducto),
+    body: JSON.stringify({ idProducto }),
     redirect: 'follow'
   })
     .then(result => {
@@ -252,6 +346,8 @@ const añadirProductoCarrito = (idProducto) => {
     .catch(error => console.log(error));
 };
 
+
+/* RENDERIZACION */
 const renderizarProductos = (idCategoria, idEmpresa) => {
   document.getElementById("articulos").innerHTML = "";
   document.getElementById("filtro-abajo").innerHTML = "";
@@ -328,51 +424,91 @@ const renderizarProductos = (idCategoria, idEmpresa) => {
       })
       .catch(e => console.log(e));
   }
-}
+};
+
+const llenarModalPedido = () => {
+  document.getElementById("body-pedido").innerHTML = "";
+  obtenerUsuario(usuario._id)
+    .then(user => {
+      obtenerPedido(user.pedidos[0]._id)
+      then(pedido => {
+        document.getElementById("pedido-total").innerHTML = pedido.total;
+        document.getElementById("pedido-direccion").innerHTML = user.direccion;
+        document.getElementById("pedido-tarjeta-credito").innerHTML = user.tarjetaDeCredito;
+        document.getElementById("hora").innerHTML = fechaActual.toLocaleTimeString('es-ES');
+      })
+        .catch(error => console.log(error));
+    })
+    .catch(error => console.log(error));
+};
 
 const renderizarListaDeseos = () => {
+  document.getElementById("listaDeseos").innerHTML = "";
+
   obtenerUsuario(usuario._id)
     .then(usr => {
-      usr.miListaDeseos.forEach(producto => {
-        document.getElementById("listaDeseos").innerHTML +=
-          `<div class="card mb-3" style="max-width: 540px;">
+      usr.miListaDeseos.forEach(idProducto => {
+        obtenerProducto(idProducto)
+          .then(producto => {
+            document.getElementById("listaDeseos").innerHTML +=
+              `<div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
               <img src="assets/productos/${producto.imagen}" class="img-fluid rounded-start" alt="...">
             </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">${producto.nombre}</h5>
+                <div style="display:flex; justify-content: space-between"><h5 class="card-title">${producto.nombre}</h5>
+                <i class="fa-solid fa-xmark" onclick="removerProductoListaDeseos('${producto._id}')"></i>                  
+              </div>
                   <p class="card-text">${producto.descripcion}</p>
                   <p class="card-text"><small class="text-body-secondary">${producto.precio}</small></p>
               </div>
             </div>
           </div>
         </div>`;
+          })
+          .catch(e => console.log(e));
       })
     })
     .catch(error => console.log(error));
 };
 
 const renderizarCarrito = () => {
+  document.getElementById("listaCarrito").innerHTML = "";
+  let contando = 0;
+
   obtenerUsuario(usuario._id)
     .then(usr => {
-      usr.miCarrito.forEach(producto => {
-        document.getElementById("listaCarrito").innerHTML +=
-          `<div class="card mb-3" style="max-width: 540px;">
+      usr.miCarrito.forEach(item => {
+        obtenerProducto(item.idProducto)
+          .then(producto => {
+            contando += item.unidades * producto.precio;
+            document.getElementById("listaCarrito").innerHTML +=
+              `<div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
               <img src="assets/productos/${producto.imagen}" class="img-fluid rounded-start" alt="...">
             </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">${producto.nombre}</h5>
-                  <p class="card-text">${producto.descripcion}</p>
-                  <p class="card-text"><small class="text-body-secondary">${producto.precio}</small></p>
+                <div style="display:flex; justify-content: space-between"><h5 class="card-title">${producto.nombre}</h5>
+                <i class="fa-solid fa-xmark" onclick="removerProductoCarrito('${producto._id}')"></i>                  
               </div>
+                  <div>
+                  <p class="card-text"><small class="text-body-secondary">${producto.descripcion}</small></p>
+                  <p class="card-text">Precio: ${producto.precio}</p>
+                  <p class="card-text">Unidades: ${item.unidades}</p>
+                  <p class="card-text">Subtotal: ${item.unidades * producto.precio}</p>
+                  </div></div>
             </div>
           </div>
         </div>`;
+          })
+          .then(res => {
+            document.getElementById("total").innerHTML = "TOTAL: L." + contando;
+          })
+          .catch(e => console.log(e));
       })
     })
     .catch(error => console.log(error));
@@ -408,7 +544,7 @@ const llenarModalProducto = (idProducto) => {
           document.getElementById("detalle-descripcion").innerHTML = producto.descripcion;
           document.getElementById("detalle-sub-categoria").innerHTML = producto.subCategorias;
           document.getElementById("btn-favoritos").setAttribute("onclick", `añadirProductoDeseos('${producto._id}')`);
-          document.getElementById("comprar").setAttribute("onclick", `añadirProductoCarrito('${producto._id}')`);
+          document.querySelector(".comprar").setAttribute("onclick", `añadirProductoCarrito('${producto._id}')`);
         })
         .catch(error => console.log(error));
     })
@@ -434,6 +570,17 @@ function regresarCategorias() {
   document.getElementById('productos').style.display = "none";
   document.getElementById('contenido-1').style.display = "block";
 };
+
+const procesarPedido = () => {
+  añadirOrden()
+    .then(result => {
+      console.log(result)
+      añadirPedido()
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+    })
+    .catch(error => console.log(error));
+}
 
 const renderizarEntorno = () => {
   var usuario = JSON.parse(localStorage.getItem("usrActual"));
